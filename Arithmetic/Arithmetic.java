@@ -1,40 +1,38 @@
-package MyMap;
+package Arithmetic;
 
-import java.util.ArrayList;
+class Arithmetic<FirstNum extends Number, SecondNum extends Number> {
+    private final FirstNum num1;
+    private final SecondNum num2;
 
-class MyMap<Key, Value> {
-    private final ArrayList<Key> keys;
-    private final ArrayList<Value> values;
-
-    public MyMap() {
-        keys = new ArrayList<>();
-        values = new ArrayList<>();
+    public Arithmetic(FirstNum num1, SecondNum num2) {
+        this.num1 = num1;
+        this.num2 = num2;
     }
 
-    public void put(Key key, Value value) {
-        if (keys.contains(key)) {
-            int index = keys.indexOf(key);
-            values.set(index, value);
-        } else {
-            keys.add(key);
-            values.add(value);
-        }
+    public double add() {
+        return num1.doubleValue() + num2.doubleValue();
     }
 
-    public Value get(Key key) {
-        if (keys.contains(key)) {
-            int index = keys.indexOf(key);
-            return values.get(index);
-        }
-        return null;
+    public double subtract() {
+        return num1.doubleValue() - num2.doubleValue();
     }
 
-    public Value remove(Key key) {
-        if (keys.contains(key)) {
-            int index = keys.indexOf(key);
-            keys.remove(index);
-            return values.remove(index);
+    public double multiply() {
+        return num1.doubleValue() * num2.doubleValue();
+    }
+
+    public double divide() {
+        if (num2.doubleValue() == 0) {
+            throw new ArithmeticException("Division by zero");
         }
-        return null;
+        return num1.doubleValue() / num2.doubleValue();
+    }
+
+    public double getMin() {
+        return Math.min(num1.doubleValue(), num2.doubleValue());
+    }
+
+    public double getMax() {
+        return Math.max(num1.doubleValue(), num2.doubleValue());
     }
 }
